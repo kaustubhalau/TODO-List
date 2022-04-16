@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/118e1c1e71.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/toDO.css">
+    <title>
+        <%= title %>
+    </title>
+
+</head>
+
+<body>
+
+    <!-- Heading of TODO List -->
+
+    <div id="main-body">
+        <h1 id="main-heading">
+            <i class="fa-solid fa-book"></i>
+            ToDo APP
+        </h1>
+
+       <!-- Form Created -->
+
+        <form action="/create-todo" method="post">
+
+            <!-- Description of Event -->
+
+            <div id="description">
+                <h3 class="headings">Description</h3>
+                <input type="text" name="description" placeholder="What do you need to do?" >
+            </div>
+
+            <!-- For Category And Date -->
+            <div id="second-div">
+
+                <div id="category">
+
+                    <h3 class="headings">Category</h3>
+                    <input type="text" name="category" required placeholder="Enter the category Imp,Office etc..">
+                    
+                </div>
+
+                <div id="date">
+
+                    <h3 class="headings">Due Date</h3>
+                    <input type="text" name="dateAndTime" id="calender">
+
+                </div>
+
+            </div>
+            <hr>
+ 
+            <!-- Add Button -->
+
+            <div id="taskButton">
+                <button class="buttonForTask">
+                    <i class="fa-solid fa-plus"></i>
+                    <h2>Add Task</h2>
+                </button>
+                
+            </div>
+        </form>
+        
+        <!-- Fetch, Delete and Show Data to Client -->
+        
+        <div id="todo_list">
+            <ul>
+                <% for(let i of TODO_LIST){ %>
+                <li>
+                    <span class="delete-button">
+                        <!-- <a href="/delete-contact/<%= i.phone %>"> -->
+                        <a href="/delete-toDo/?id=<%= i._id %>">
+                            
+                            <i class="fas fa-window-close"></i>
+                        </a> <!--for query instead of param-->
+                    </span>
+                    
+                    <p><%= i.description %></p>
+                    <p><%= i.dateAndTime %></p>
+
+                    <div id="categoryTab">
+                        <p style="color: black; font-weight: bolder;"><%= i.category %></p>
+                    </div>
+                </li>
+                <hr>
+                <% } %>
+
+            </ul>
+
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="../assets/javaScript/toDO.js"></script>
+</body>
+
+</html>
